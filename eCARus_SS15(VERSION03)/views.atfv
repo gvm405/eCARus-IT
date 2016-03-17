@@ -19605,6 +19605,16 @@ include"views_transitions.atfv"
     @id1233898571485251413 width : 1024;
     @id1233896016321251414 x : 0;
     @id1233897519941251415 y : 0;
+    @id1233897084111182351 widget Rectangle GtfRectangleDWT
+    {
+        @id1233898194119182353 name : Rectangle;
+        @id1233892759956197664 height : v:this->^->Image.height;
+        @id211573946583477695 visible : true;
+        @id1233894867460191037 width : v:this->^->Image.width;
+        @id1233892309091182356 x : 0;
+        @id1233892851365182357 y : 0;
+        @id1233895281632204042 fillColor : color: 5, 63, 182, 255;
+    }
     @id1233890202243275617 widget Image GtfImageDWT
     {
         feature ScaleMode
@@ -19620,5 +19630,53 @@ include"views_transitions.atfv"
         @id1233894790166313569 "image" : image:images_Specials_eCARusNewLogo_png;
         @id1233894584991360990 horizontalAlign : 1;
         @id1233891567182355799 verticalAlign : 0;
+    }
+    @id1233896924201400766 widget setIconButton GtfContainerDWT
+    {
+        feature TouchShortReleased
+        {
+            @id1233897114016400772 touchShortReleased : script
+            {
+                    function (v:touchId::int32_t, v:x::int32_t, v:y::int32_t, v:fingerId::int32_t)
+                    {
+                            @loc
+                            v:this.index += 1;
+                            false;
+                        
+                    }
+            }
+            ;
+        }
+        feature StateTouched
+        {
+            @id1233891648507400768 touchable : true;
+            @id1233899457472400769 touched : false;
+            @id1233891049770400770 touchPolicy : 0;
+            @id1233896748644400771 touchBehavior : 0;
+        }
+        @id1233895862598400773 name : setIconButton;
+        @id1233892747943400774 height : 300;
+        @id211576532092478116 visible : true;
+        @id1233892786385400775 width : 300;
+        @id1233892408446400776 x : 283;
+        @id1233896249851400777 y : 229;
+        @id1233898878537400767 index ::int32_t : 0;
+        @id1233898294058037539 "Widget property" ::void : on_trigger
+        {
+            function(v:isInit::bool){
+                @loc
+                if(v:this.index == 10)
+                {
+                fire ev:Menu_GoTo_Home()
+                }
+                false;
+            }
+        }
+        trigger
+        {
+            @loc
+            v:this.index
+        }
+        ;
     }
 }
